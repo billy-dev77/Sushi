@@ -20,7 +20,7 @@ Pour ce pojet nous devons crée une application web de vente de sushi ou deux sc
 
 # La liste des plateaux
 
-![Image text](/angular/Sushi-main/images)
+![Image text](/angular/Sushi-main/images/plateaux.png)
 
 # Définitoin d'une enitté objet pour la répresentztion des données.
 ```
