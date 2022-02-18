@@ -18,6 +18,10 @@ Pour ce pojet nous devons crée une application web de vente de sushi ou deux sc
 5. Prise en compte d’au moins 2 Evil User Stories (prévoir un tableau des actions redoutées) <br>
 6. Test unitaire (au moins 3) - par exemple concernant la gestion d’une commande <br>
 
+# La liste des plateaux
+
+![Image text](/angular/Sushi-main/images)
+
 # Définitoin d'une enitté objet pour la répresentztion des données.
 ```
 export class Commande {
