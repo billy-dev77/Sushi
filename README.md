@@ -18,7 +18,7 @@ Pour ce pojet nous devons crée une application web de vente de sushi ou deux sc
 5. Prise en compte d’au moins 2 Evil User Stories (prévoir un tableau des actions redoutées) <br>
 6. Test unitaire (au moins 3) - par exemple concernant la gestion d’une commande <br>
 
-#2 Définitoin d'une enitté objet pour la répresentztion des données.
+# Définitoin d'une enitté objet pour la répresentztion des données.
 ```
 export class Commande {
     plateaux: Array<Plateau>;
@@ -38,3 +38,68 @@ export class Composition {
 }
 
 ```
+```
+export class Plateau{
+    id: number;
+    nom: string;
+    pieces: number;
+    composition: Array<Composition>;
+    saveurs: Array<String>;
+    prix: number;
+    image: string;
+    
+    constructor() {
+        this.saveurs = new Array<string>();
+        this.composition = new Array<Composition>();
+    }
+}
+```
+
+voici nos 3 entitées pour la representation des donnée des Commande , des plateaux et des Composition.
+
+# Affichage de la liste des objets, accès au détail, calcul du montant de la commande
+
+```
+  calculTotal() {
+    this.total= 0;
+    for(let plateau of this.commande.plateaux) {
+      this.total += plateau.prix;
+    }
+  }
+```
+ pour le calcul de montant toal voici ce qu'on n'a coder.
+
+```
+  showDetails(template: TemplateRef<any>, plateau: Plateau) {
+    this.modalRef = this.modalService.show(template);
+    this.plateauDetails = plateau;
+  }
+
+}
+```
+ceci va permttre d'afficher les detail de la commande , dans c'est detaille vous toruverez la saveur ainsi que la composition. <br>
+
+```
+<div class="modal-body">
+      <p style="font-weight: bold;">Saveurs : </p>
+      <ul *ngFor="let saveur of plateauDetails.saveurs">
+        <li>{{saveur}}</li>
+      </ul>
+```
+
+```
+ <p style="font-weight: bold;">Composition : </p>
+      <table class="table table-success table-striped">
+        <tr>
+          <th>Nom</th>
+          <th>Quantité</th>
+        </tr>
+        <tr *ngFor="let comp of plateauDetails.composition">
+          <td>{{comp.nom}}</td>
+          <td>{{comp.quantite}}</td>
+        </tr>
+```
+
+# Sauvegarde locale côté client (LocalStorage)
+ce qui va permttre de stocker les donnée dans les memoire du navigateur 
+
