@@ -20,7 +20,7 @@ Pour ce pojet nous devons crée une application web de vente de sushi ou deux sc
 
 # La liste des plateaux
 
-![Image text](/angular/Sushi-main/images/plateaux.png)
+![Image](/angular/Sushi-main/images/plateaux.png)
 
 # Définitoin d'une enitté objet pour la répresentztion des données.
 ```
@@ -105,5 +105,24 @@ ceci va permttre d'afficher les detail de la commande , dans c'est detaille vous
 ```
 
 # Sauvegarde locale côté client (LocalStorage)
-ce qui va permttre de stocker les donnée dans les memoire du navigateur 
+```
+validerCommande() {
+    if (localStorage.getItem('commandes')) {
+      this.commandes = JSON.parse(localStorage.getItem('commandes') || '{}')
+    }
+    this.commandes.push(this.commande);
+    localStorage.setItem('commandes', JSON.stringify(this.commandes));
+    localStorage.removeItem('commandeEncours');
+    this.commande = new Commande();
+    this.modalRef?.hide();
+  }
+  
+```
+```
+localStorage.getItem('commandes')
+ 
+```
+le  getItem() de l'interface Storage renvoie la valeur associée à la clé passée en paramètre.
+ici le setItem va permttre de 
+Ce qui va permettre de stocker les donnée dans les memoire du navigateur 
 
