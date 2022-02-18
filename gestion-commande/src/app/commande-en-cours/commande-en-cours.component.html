@@ -1,0 +1,49 @@
+<div class="accordion" id="accordionExample" style="margin-top: 10px; margin-bottom: 20px;" *ngIf="commande.plateaux.length > 0">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          Total: {{total | currency: "EUR"}}
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body" *ngFor="let plateau of commande.plateaux">
+          <div style="display: block;">
+            <div style="display: inline; margin-left: 30px;">
+              <img src="../../assets/{{plateau.image}}.webp">
+            </div>
+            <div style="display: inline; margin-left: 30px;">
+              {{plateau.nom}}
+            </div>
+            <div style="display: inline; margin-left: 30px;">
+              {{plateau.prix | currency: "EUR"}}
+            </div>
+            <div style="display: inline; margin-left: 30px;">
+              {{plateau.pieces}} piéces
+            </div>
+            <div style="display: inline; margin-left: 30px;">
+              <button type="button" class="btn btn-danger" (click)="supprimerPlateau(plateau)">Supprimer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-success" (click)="showTypeCommande(template)" *ngIf="commande.plateaux.length > 0">Valider Commande</button>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Type de commande</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="radio" value="Livraison" name="cmd_type" [(ngModel)]="commande.type" > Livraison
+      <input type="radio" value="Sur place" name="cmd_type" [(ngModel)]="commande.type" > Sur place
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="validerCommande()" [disabled]="!commande.type">Valider Commande</button>
+    </div>
+  </ng-template>

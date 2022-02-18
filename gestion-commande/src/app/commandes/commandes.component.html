@@ -1,0 +1,32 @@
+<ng-container *ngFor="let commande of commandes">
+    <div class="accordion" id="accordionExample" style="margin-top: 10px;">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+              {{commande.date | date: 'dd/MM/yyyy'}}
+              <span style="margin-left: 20%;">{{commande.type}}</span>
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body" *ngFor="let plateau of commande.plateaux">
+            <div style="display: block;">
+              <div style="display: inline; margin-left: 30px;">
+                <img src="../../assets/{{plateau.image}}.webp">
+              </div>
+              <div style="display: inline; margin-left: 30px;">
+                {{plateau.nom}}
+              </div>
+              <div style="display: inline; margin-left: 30px;">
+                {{plateau.prix | currency: "EUR"}}
+              </div>
+              <div style="display: inline; margin-left: 30px;">
+                {{plateau.pieces}} piéces
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>

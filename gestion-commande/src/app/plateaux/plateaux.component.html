@@ -1,0 +1,45 @@
+<ng-container *ngFor="let plateau of plateaux">
+    <div style="display: inline-block;">
+  
+      <div class="card" style="width: 18rem; margin-right: 5px; margin-bottom: 30px;">
+        <img src="../../assets/{{plateau.image}}.webp" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{plateau.nom}}</h5>
+          <p class="card-text">{{plateau.pieces}} piéces à {{plateau.prix | currency: "EUR"}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><button type="button" class="btn btn-primary" (click)="showDetails(template, plateau)">Détails</button></li>
+        </ul>
+        <div class="card-body">
+          <button type="button" class="btn btn-success" style="font-weight: bold;
+          font-size: 14px;" (click)="ajouterPanier(plateau)">Ajouter Au panier</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{plateauDetails.nom}}</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight: bold;">Saveurs : </p>
+      <ul *ngFor="let saveur of plateauDetails.saveurs">
+        <li>{{saveur}}</li>
+      </ul>
+      <p style="font-weight: bold;">Composition : </p>
+      <table class="table table-success table-striped">
+        <tr>
+          <th>Nom</th>
+          <th>Quantité</th>
+        </tr>
+        <tr *ngFor="let comp of plateauDetails.composition">
+          <td>{{comp.nom}}</td>
+          <td>{{comp.quantite}}</td>
+        </tr>
+      </table>
+    </div>
+  </ng-template>
