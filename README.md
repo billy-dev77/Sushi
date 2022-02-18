@@ -19,4 +19,22 @@ Pour ce pojet nous devons crée une application web de vente de sushi ou deux sc
 6. Test unitaire (au moins 3) - par exemple concernant la gestion d’une commande <br>
 
 #2 Définitoin d'une enitté objet pour la répresentztion des données.
+```
+export class Commande {
+    plateaux: Array<Plateau>;
+    type: string;
+    date: Date;
+    constructor() {
+        this.plateaux = new Array<Plateau>();
+        this.date = new Date();
+    }
+}
 
+```
+```
+export class Composition {
+    nom: string;
+    quantite: number;
+}
+
+```
